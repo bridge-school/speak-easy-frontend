@@ -6,6 +6,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
           <p>
@@ -23,6 +24,9 @@ class App extends Component {
           <div>Test</div>
           <h3>Heather's Test h3 for Test Commit!</h3>
         </header>
+
+        <h1>Hello World, Day 1 group project kick off!</h1>
+
       </div>
     );
   }
