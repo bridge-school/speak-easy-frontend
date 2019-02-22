@@ -22,6 +22,7 @@ class App extends Component {
           </a>
           <div>Hello team! :)</div>
           <div>Test</div>
+          <h3>Heather's Test h3 for Test Commit!</h3>
         </header>
 
         <h1>Hello World, Day 1 group project kick off!</h1>
