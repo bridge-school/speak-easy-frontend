@@ -1,9 +1,14 @@
 import React from "react";
 
 const RadioButtonComponent = props => {
-  const radioButtons = props.options.map(option => (
-    <span>
-      <input type="radio" name={props.name} value={option} onChange={props.handleChange}/>
+  const radioButtons = props.options.map((option,i) => (
+    <span key={i}>
+      <input
+        type="radio"
+        name={props.name}
+        value={option}
+        onChange={props.handleChange}
+      />
       {option}
     </span>
   ));
@@ -17,6 +22,7 @@ const RadioButtonComponent = props => {
 };
 
 export default RadioButtonComponent;
+
 /*
 Example of props:
       {
