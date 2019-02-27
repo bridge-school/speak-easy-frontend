@@ -1,0 +1,69 @@
+{
+  "events": [
+    {
+      "_id": "5c6f4ede754d9eded268266d",
+      "eventName": "ea deserunt enim",
+      "eventWebsite": "elit.com",
+      "eventDate": "2019-01-30T02:57:13 +05:00",
+      "location": "Rosedale, Virgin Islands",
+      "submissionDueDate": "2019-07-05T08:38:59 +04:00",
+      "isCompensated": true,
+      "hasCodeOfConduct": true,
+      "hasDiversityScholarship": false,
+      "contactName": "Knapp Whitehead",
+      "contactEmail": "knappwhitehead@genesynk.com"
+    },
+    {
+      "_id": "5c6f4ede42d40366f6a858ba",
+      "eventName": "commodo ea exercitation",
+      "eventWebsite": "commodo.com",
+      "eventDate": "2019-01-14T03:39:59 +05:00",
+      "location": "Gracey, Idaho",
+      "submissionDueDate": "2019-08-17T09:57:51 +04:00",
+      "isCompensated": true,
+      "hasCodeOfConduct": true,
+      "hasDiversityScholarship": true,
+      "contactName": "Celeste Bradley",
+      "contactEmail": "celestebradley@genesynk.com"
+    },
+    {
+      "_id": "5c6f4edee7f327f58aa3bc5f",
+      "eventName": "proident nostrud consequat",
+      "eventWebsite": "deserunt.com",
+      "eventDate": "2019-01-08T04:19:27 +05:00",
+      "location": "Kraemer, Louisiana",
+      "submissionDueDate": "2019-07-17T05:39:13 +04:00",
+      "isCompensated": false,
+      "hasCodeOfConduct": false,
+      "hasDiversityScholarship": false,
+      "contactName": "Foreman Cervantes",
+      "contactEmail": "foremancervantes@genesynk.com"
+    },
+    {
+      "_id": "5c6f4ede245dc851d7d6f458",
+      "eventName": "amet do ullamco",
+      "eventWebsite": "aliqua.com",
+      "eventDate": "2019-01-19T09:20:58 +05:00",
+      "location": "Siglerville, Iowa",
+      "submissionDueDate": "2019-05-25T06:55:26 +04:00",
+      "isCompensated": true,
+      "hasCodeOfConduct": false,
+      "hasDiversityScholarship": false,
+      "contactName": "Marcella Ayala",
+      "contactEmail": "marcellaayala@genesynk.com"
+    },
+    {
+      "_id": "5c6f4ede04a4628e81efe50b",
+      "eventName": "laborum proident labore",
+      "eventWebsite": "anim.com",
+      "eventDate": "2019-01-23T08:54:34 +05:00",
+      "location": "Gibbsville, New Mexico",
+      "submissionDueDate": "2019-05-04T12:59:35 +04:00",
+      "isCompensated": false,
+      "hasCodeOfConduct": true,
+      "hasDiversityScholarship": true,
+      "contactName": "Juliette Freeman",
+      "contactEmail": "juliettefreeman@genesynk.com"
+    }
+  ]
+}
