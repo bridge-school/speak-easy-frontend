@@ -1,6 +1,6 @@
 import React from "react";
 
-const RadioButtonComponent = props => {
+const RadioButton = props => {
   const radioButtons = props.options.map((option,i) => (
     <span key={i}>
       <input
@@ -11,6 +11,8 @@ const RadioButtonComponent = props => {
       />
       {option}
     </span>
+
+
   ));
   return (
     <div>
@@ -21,7 +23,7 @@ const RadioButtonComponent = props => {
   );
 };
 
-export default RadioButtonComponent;
+export default RadioButton;
 
 /*
 Example of props:
@@ -30,4 +32,5 @@ Example of props:
         question: "Are all speakers compensated at your event?",
         options:["Yes","No","Maybe"]
       }
+
 */
