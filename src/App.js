@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import 'tachyons';
 import Header from './components/Header';
 class App extends Component {
   render() {
