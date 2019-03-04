@@ -7,7 +7,6 @@ import Autocomplete from '../components/Autocomplete';
 import Datepicker from '../components/Datepicker';
 import RadioButton from '../components/RadioButton';
 import Form from '../components/Form';
-import App from '../App';
 
 storiesOf('TextInput', module)
   .add('default', () => <TextInput />)
