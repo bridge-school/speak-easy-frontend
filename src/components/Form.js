@@ -2,6 +2,7 @@ import React from 'react';
 import TextInput from './TextInput';
 import RadioButton from './RadioButton';
 import Autocomplete from './Autocomplete';
+import Datepicker from './Datepicker';
 
 const Form = props => {
   let propsArray = [
@@ -15,11 +16,17 @@ const Form = props => {
       name: 'eventWebsite',
       inputType: 'text'
     },
-    {},
+    {
+      title: 'Event Date',
+      name: 'eventDate'
+    },
     {
       title: 'Event Location'
     },
-    {},
+    {
+      title: 'Submission Due Date',
+      name: 'submissionDueDate'
+    },
     {
       title: 'Submission Website',
       name: 'submissionWebsite'
@@ -47,15 +54,20 @@ const Form = props => {
   const handleAutocomplete = city => {
     console.log(city);
   };
+  const handleDatepicker = selectedDate => {
+    console.log(selectedDate);
+  };
   propsArray = propsArray.map(current => ({ ...current, handleChange }));
+  propsArray[2] = { ...propsArray[2], handleDatepicker };
   propsArray[3] = { ...propsArray[3], handleAutocomplete };
+  propsArray[4] = { ...propsArray[4], handleDatepicker };
   return (
     <form>
       <TextInput {...propsArray[0]} />
       <TextInput {...propsArray[1]} />
-
+      <Datepicker {...propsArray[2]} />
       <Autocomplete {...propsArray[3]} />
-
+      <Datepicker {...propsArray[4]} />
       <TextInput {...propsArray[5]} />
       <RadioButton {...propsArray[6]} />
       <RadioButton {...propsArray[7]} />

@@ -51,7 +51,7 @@ class Autocomplete extends Component {
           }&libraries=places`}
           onLoad={this.handleScriptLoad}
         />
-        <label htmlFor="autocomplete">{this.props.title}y</label>
+        <label htmlFor="autocomplete">{this.props.title}</label>
         <input
           id="autocomplete"
           type="text"
