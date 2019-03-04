@@ -1,7 +1,7 @@
-import React from "react";
+import React from 'react';
 
 const RadioButton = props => {
-  const radioButtons = props.options.map((option,i) => (
+  const radioButtons = props.options.map((option, i) => (
     <span key={i}>
       <input
         type="radio"
@@ -11,8 +11,6 @@ const RadioButton = props => {
       />
       {option}
     </span>
-
-
   ));
   return (
     <div>
@@ -22,7 +20,7 @@ const RadioButton = props => {
     </div>
   );
 };
-
+RadioButton.defaultProps = { options: [] };
 export default RadioButton;
 
 /*
