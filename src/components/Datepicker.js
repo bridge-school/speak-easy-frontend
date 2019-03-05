@@ -22,6 +22,7 @@ class Datepicker extends Component {
           placeholder=""
           inputProps={{ readOnly: true }}
           onDayChange={this.handleDayChange}
+          classNames={{ container: 'bg-bright-blue' }}
         />
       </div>
     );
