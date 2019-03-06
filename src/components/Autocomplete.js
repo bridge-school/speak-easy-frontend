@@ -51,12 +51,15 @@ class Autocomplete extends Component {
           }&libraries=places`}
           onLoad={this.handleScriptLoad}
         />
-        <label htmlFor="autocomplete">{this.props.title}</label>
+        <div className="b pb2">
+          <label htmlFor="autocomplete">{this.props.title}</label>
+        </div>
         <input
           id="autocomplete"
           type="text"
           value={this.state.value}
           onChange={this.handleChange}
+          className="ba br1 b--grey pa2"
         />
       </div>
     );
