@@ -1,4 +1,5 @@
 import React from 'react';
+import 'tachyons';
 
 import { storiesOf } from '@storybook/react';
 

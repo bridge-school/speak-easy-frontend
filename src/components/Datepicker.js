@@ -2,14 +2,19 @@ import React, { Component } from 'react';
 import DayPickerInput from 'react-day-picker/DayPickerInput';
 import 'react-day-picker/lib/style.css';
 
+import TextInput from './TextInput';
+
 class Datepicker extends Component {
   state = {
     selectedDate: null
   };
 
   handleDayChange = date => {
+    const { handleDatepicker } = this.props;
     this.setState({ selectedDate: date }, () => {
-      this.props.handleDatepicker(this.state.selectedDate);
+      if (handleDatepicker) {
+        handleDatepicker(this.state.selectedDate);
+      }
     });
   };
 
@@ -22,6 +27,7 @@ class Datepicker extends Component {
           placeholder=""
           inputProps={{ readOnly: true }}
           onDayChange={this.handleDayChange}
+          component={props => <TextInput {...props} />}
         />
       </div>
     );

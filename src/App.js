@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
+import 'tachyons';
+import { BrowserRouter, Route } from 'react-router-dom';
+
+import './App.scss';
+
 import Header from './components/Header';
 import Form from './components/Form';
-import { BrowserRouter, Route } from 'react-router-dom';
 
 class App extends Component {
   render() {

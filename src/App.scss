@@ -1,0 +1,36 @@
+.App {
+  text-align: center;
+}
+
+$colours: (
+  'bright-blue': #3a3fde,
+  'lavender': #ccd0ea,
+  'light-grey': #f8f8fa,
+  'grey': #d6d6d6
+);
+
+@each $name, $hex in $colours {
+  .#{$name} {
+    color: $hex;
+    &:visited {
+      color: $hex;
+    }
+  }
+  .bg-#{$name} {
+    background-color: $hex;
+  }
+  .b--#{$name} {
+    border-color: $hex;
+  }
+  .hover-bg-#{$name} {
+    &:focus,
+    &:active,
+    &:hover {
+      background-color: $hex;
+    }
+  }
+  .hover-#{$name}:hover,
+  .hover-#{$name}:visited:hover {
+    color: $hex;
+  }
+}
