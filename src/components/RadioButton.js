@@ -1,7 +1,8 @@
 import React from 'react';
 
 const RadioButton = props => {
-  const radioButtons = props.options.map((option, i) => (
+  const options = ['Yes', 'No'];
+  const radioButtons = options.map((option, i) => (
     <div key={i} className="pa2 tl">
       <input
         type="radio"

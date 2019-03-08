@@ -1,0 +1,48 @@
+{
+  "eventName": {
+    "title": "Event Name",
+    "name": "eventName",
+    "inputType": "text"
+  },
+  "eventWebsite": {
+    "title": "Event Website",
+    "name": "eventWebsite",
+    "inputType": "text"
+  },
+  "eventDate": {
+    "title": "Event Date",
+    "name": "eventDate"
+  },
+  "eventLocation": {
+    "title": "Event Location",
+    "name": "eventLocation"
+  },
+  "submissionDueDate": {
+    "title": "Submission Due Date",
+    "name": "submissionDueDate"
+  },
+  "submissionWebsite": {
+    "title": "Submission Website",
+    "name": "submissionWebsite"
+  },
+  "isCompensated": {
+    "name": "isCompensated",
+    "question": "Are all speakers compensated at your event?"
+  },
+  "hasCodeOfConduct": {
+    "name": "hasCodeOfConduct",
+    "question": "Does your event have a publicly visible code of conduct?"
+  },
+  "hasDiversityScholarships": {
+    "name": "hasDiversityScholarships",
+    "question": "Does your event provide diversity scholarships?"
+  },
+  "contactName": {
+    "name": "contactName",
+    "title": "Contact Name"
+  },
+  "contactEmail": {
+    "name": "contactEmail",
+    "title": "Contact Email"
+  }
+}
