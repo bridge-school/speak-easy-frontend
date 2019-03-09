@@ -16,8 +16,7 @@ const ConferenceList = ({ conferences }) => {
 
 const mapStateToProps = store => {
   return {
-    conferences: store.mockConferenceData,
-    searchParam: store.searchBar
+    conferences: store.mockConferenceData
   };
 };
 
