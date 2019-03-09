@@ -2,13 +2,12 @@ import { connect } from 'react-redux';
 import React from 'react';
 import ConferenceCard from './ConferenceCard';
 
-const ConferenceList = props => {
-  console.log(props.conferences);
+const ConferenceList = ({ conferences }) => {
   return (
     <section class=" mw5 mw7-ns center">
       <h1 class="tl">Upcoming Conferences</h1>
-      {props.conferences &&
-        props.conferences.map(conference => (
+      {conferences &&
+        conferences.map(conference => (
           <ConferenceCard conferenceData={conference} />
         ))}
     </section>
@@ -17,7 +16,8 @@ const ConferenceList = props => {
 
 const mapStateToProps = store => {
   return {
-    conferences: store.mockConferenceData
+    conferences: store.mockConferenceData,
+    searchParam: store.searchBar
   };
 };
 

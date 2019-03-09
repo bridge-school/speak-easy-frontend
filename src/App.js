@@ -15,12 +15,10 @@ class App extends Component {
         <BrowserRouter>
           <div>
             <Route path="/" component={Header} />
+            <Route exact path="/" component={ConferenceList} />
             <Route path="/submit-conference" component={Form} />
           </div>
         </BrowserRouter>
-        <div>
-          <ConferenceList />
-        </div>
       </div>
     );
   }
