@@ -8,6 +8,79 @@ import {
   UPDATE_CONFERENCES
 } from './actions';
 
+const mockConferences = [
+  {
+    id: '2uHNVX5NmaizoPB8pzbd',
+    eventWebsite: 'anim.com',
+    eventDate: '2019-02-03',
+    eventName: 'laborum proident labore',
+    location: 'Gibbsville, New Mexico',
+    isCompensated: false,
+    contactName: 'Juliette Freeman',
+    submissionWebsite: 'mysubmission.com',
+    hasCodeOfConduct: true,
+    submissionDueDate: '2019-01-01',
+    contactEmail: 'juliettefreeman@genesynk.com',
+    hasDiversityScholarship: true
+  },
+  {
+    id: '9iHfSKdQHb0sOq99a22Z',
+    submissionWebsite: 'mysubmission.com',
+    hasCodeOfConduct: true,
+    submissionDueDate: '2019-02-03',
+    contactEmail: 'knappwhitehead@genesynk.com',
+    hasDiversityScholarship: false,
+    eventWebsite: 'elit.com',
+    eventDate: '2019-04-01',
+    eventName: 'ea deserunt enim',
+    location: 'Rosedale, Virgin Islands',
+    isCompensated: true,
+    contactName: 'Knapp Whitehead'
+  },
+  {
+    id: 'bQB7sWiwBel9x0KG6VM4',
+    location: 'Gracey, Idaho',
+    isCompensated: true,
+    contactName: 'Celeste Bradley',
+    submissionWebsite: 'coolevent.com',
+    hasCodeOfConduct: true,
+    submissionDueDate: '2019-05-08',
+    contactEmail: 'celestebradley@genesynk.com',
+    hasDiversityScholarship: true,
+    eventWebsite: 'commodo.com',
+    eventDate: '2019-03-02',
+    eventName: 'commodo ea exercitation'
+  },
+  {
+    id: 'm46PjIUOaNBJE5OMGXwR',
+    location: 'Siglerville, Iowa',
+    isCompensated: true,
+    contactName: 'Marcella Ayala',
+    submissionWebsite: 'eventstuff.com',
+    hasCodeOfConduct: false,
+    submissionDueDate: '2019-03-03',
+    contactEmail: 'marcellaayala@genesynk.com',
+    hasDiversityScholarship: false,
+    eventWebsite: 'aliqua.com',
+    eventDate: '2019-08-08',
+    eventName: 'amet do ullamco'
+  },
+  {
+    id: 'qFJjgGZSHavZvLSmiHz9',
+    contactEmail: 'foremancervantes@genesynk.com',
+    hasDiversityScholarship: false,
+    eventWebsite: 'deserunt.com',
+    eventDate: '2019-06-06',
+    eventName: 'proident nostrud consequat',
+    location: 'Kraemer, Louisiana',
+    isCompensated: false,
+    contactName: 'Foreman Cervantes',
+    submissionWebsite: 'yayayaa.com',
+    hasCodeOfConduct: false,
+    submissionDueDate: '2019-02-02'
+  }
+];
+
 const formData = (state = {}, action) => {
   switch (action.type) {
     case UPDATE_FORM_DATA:
@@ -48,11 +121,21 @@ const conferences = (state = [], action) => {
   }
 };
 
+const mockConferenceData = (state = mockConferences, action) => {
+  switch (action.type) {
+    case 'UPDATE_MOCK_CONFERENCES':
+      return [...state, action.payload];
+    default:
+      return state;
+  }
+};
+
 const reducers = combineReducers({
   formData,
   isFormSubmitting,
   isListLoading,
-  conferences
+  conferences,
+  mockConferenceData
 });
 
 export default reducers;
