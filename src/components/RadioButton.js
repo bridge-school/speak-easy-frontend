@@ -1,8 +1,9 @@
 import React from 'react';
 
 const RadioButton = props => {
-  const radioButtons = props.options.map((option, i) => (
-    <span key={i}>
+  const options = ['Yes', 'No'];
+  const radioButtons = options.map((option, i) => (
+    <div key={i} className="pa2 tl">
       <input
         type="radio"
         name={props.name}
@@ -10,12 +11,13 @@ const RadioButton = props => {
         onChange={props.handleChange}
       />
       {option}
-    </span>
+    </div>
   ));
   return (
-    <div>
-      <label htmlFor={props.name}>{props.question}</label>
-      <br />
+    <div className="w-100 pa2 tl">
+      <label className="b" htmlFor={props.name}>
+        {props.question}
+      </label>
       {radioButtons}
     </div>
   );

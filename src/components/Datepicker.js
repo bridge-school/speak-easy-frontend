@@ -13,7 +13,7 @@ class Datepicker extends Component {
     const { handleDatepicker } = this.props;
     this.setState({ selectedDate: date }, () => {
       if (handleDatepicker) {
-        handleDatepicker(this.state.selectedDate);
+        handleDatepicker(this.state.selectedDate, this.props.name);
       }
     });
   };
@@ -21,7 +21,9 @@ class Datepicker extends Component {
   render() {
     return (
       <div>
-        <label htmlFor={this.props.name}>{this.props.title}</label>
+        <div className="b pb2">
+          <label htmlFor={this.props.name}>{this.props.title}</label>
+        </div>
         <DayPickerInput
           id={this.props.name}
           placeholder=""
