@@ -14,7 +14,9 @@ const TextInput = ({
 }) => {
   return (
     <div>
-      <label htmlFor={name}>{title}</label>
+      <div className="b pb2">
+        <label htmlFor={name}>{title}</label>
+      </div>
       <input
         id={name}
         name={name}
