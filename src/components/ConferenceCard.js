@@ -20,6 +20,7 @@ const BlackOrGray = ({ isActive, children, icon, alt }) => {
 const ConferenceCard = props => {
   const {
     eventName,
+    eventWebsite,
     submissionDueDate,
     eventDate,
     location,
@@ -30,7 +31,9 @@ const ConferenceCard = props => {
   return (
     <div class="br3 ba b--black-20 mw5 mw7-ns center bg-white pa3  sans-serif ma3 tl">
       <div className="w-100 cf sans-serif pv2">
-        <h3 className="di tl bright-blue">{eventName}</h3>
+        <a href={eventWebsite}>
+          <h3 className="di tl bright-blue">{eventName}</h3>
+        </a>
         <p className="di fr black ma0">{submissionDueDate}</p>
       </div>
       <p className="di pa0 mid-gray">{eventDate}</p>
