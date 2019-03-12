@@ -60,6 +60,7 @@ class Autocomplete extends Component {
           value={this.state.value}
           onChange={this.handleChange}
           className="ba br1 b--grey pa2"
+          required
         />
       </div>
     );
