@@ -37,6 +37,7 @@
     "@storybook/addon-links": "^4.1.13",
     "@storybook/addons": "^4.1.13",
     "@storybook/react": "^4.1.13",
+    "redux-devtools-extension": "^2.13.8",
     "tachyons": "^4.10.0"
   }
 }

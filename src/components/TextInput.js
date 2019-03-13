@@ -28,6 +28,7 @@ const TextInput = ({
         onClick={onClick}
         onBlur={onBlur}
         className="ba br1 b--grey pa2"
+        required
       />
     </div>
   );

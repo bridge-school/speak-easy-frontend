@@ -9,6 +9,7 @@ const RadioButton = props => {
         name={props.name}
         value={option}
         onChange={props.handleChange}
+        required
       />
       {option}
     </div>
@@ -24,13 +25,3 @@ const RadioButton = props => {
 };
 RadioButton.defaultProps = { options: [] };
 export default RadioButton;
-
-/*
-Example of props:
-      {
-        name: "compensated",
-        question: "Are all speakers compensated at your event?",
-        options:["Yes","No","Maybe"]
-      }
-
-*/

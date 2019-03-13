@@ -84,7 +84,7 @@ const mockConferences = [
 const formData = (state = {}, action) => {
   switch (action.type) {
     case UPDATE_FORM_DATA:
-      return {};
+      return { ...state, ...action.payload };
     default:
       return state;
   }
