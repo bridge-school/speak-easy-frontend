@@ -11,12 +11,12 @@ const ConferenceList = ({ conferences, searchParam }) => {
   );
 
   return (
-    <section class=" mw5 mw7-ns center">
-      <h1 class="tl">Upcoming Conferences</h1>
+    <section className=" mw5 mw7-ns center">
+      <h1 className="tl">Upcoming Conferences</h1>
       <SearchBar />
       {filteredList &&
         filteredList.map(conference => (
-          <ConferenceCard conferenceData={conference} />
+          <ConferenceCard key={conference.id} conferenceData={conference} />
         ))}
     </section>
   );
