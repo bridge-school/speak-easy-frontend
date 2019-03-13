@@ -5,7 +5,8 @@ import {
   FORM_SUBMIT_SUCCESS,
   LIST_FETCH_START,
   LIST_FETCH_SUCCESS,
-  UPDATE_CONFERENCES
+  UPDATE_CONFERENCES,
+  UPDATE_SEARCH_PARAM
 } from './actions';
 
 const mockConferences = [
@@ -130,12 +131,22 @@ const mockConferenceData = (state = mockConferences, action) => {
   }
 };
 
+const searchParam = (state = '', action) => {
+  switch (action.type) {
+    case UPDATE_SEARCH_PARAM:
+      return action.payload;
+    default:
+      return state;
+  }
+};
+
 const reducers = combineReducers({
   formData,
   isFormSubmitting,
   isListLoading,
   conferences,
-  mockConferenceData
+  mockConferenceData,
+  searchParam
 });
 
 export default reducers;
