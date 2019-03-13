@@ -1,3 +1,5 @@
+import { isFormDataValid } from '../utils';
+
 export const UPDATE_FORM_DATA = 'UPDATE_FORM_DATA';
 export const FORM_SUBMIT_START = 'FORM_SUBMIT_START';
 export const FORM_SUBMIT_SUCCESS = 'FORM_SUBMIT_SUCCESS';
@@ -12,10 +14,8 @@ export const submitFormToStore = payload => {
 export const handleFormSubmit = formData => {
   return dispatch => {
     dispatch(submitFormToStore(formData));
-    const emptyFormFields = Object.keys(formData)
-      .map(value => formData[value])
-      .filter(x => x === '').length;
-    if (emptyFormFields === 0) {
+    const validateMessage = isFormDataValid(formData);
+    if (validateMessage.length === 0) {
       fetch('http://localhost:8081/conferences', {
         method: 'POST',
         body: JSON.stringify(formData),
@@ -25,6 +25,7 @@ export const handleFormSubmit = formData => {
       })
         .then(res => console.log(res))
         .catch(err => console.log(err));
-    }
+    } else
+      alert('Form validation returned following errors:\n' + validateMessage);
   };
 };
