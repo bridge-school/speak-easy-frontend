@@ -29,7 +29,7 @@ class Datepicker extends Component {
           placeholder=""
           inputProps={{ readOnly: true }}
           onDayChange={this.handleDayChange}
-          component={props => <TextInput {...props} />}
+          component={props => <TextInput {...props} required />}
         />
       </div>
     );
