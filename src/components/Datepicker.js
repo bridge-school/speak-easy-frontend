@@ -30,6 +30,11 @@ class Datepicker extends Component {
           inputProps={{ readOnly: true }}
           onDayChange={this.handleDayChange}
           component={props => <TextInput {...props} required />}
+          dayPickerProps={{
+            disabledDays: {
+              before: new Date()
+            }
+          }}
         />
       </div>
     );
