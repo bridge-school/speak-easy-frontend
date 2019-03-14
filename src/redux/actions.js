@@ -10,3 +10,28 @@ export const onSearchChange = input => ({
   type: UPDATE_SEARCH_PARAM,
   payload: input
 });
+
+export const submitFormToStore = payload => {
+  return { type: UPDATE_FORM_DATA, payload };
+};
+
+export const handleFormSubmit = formData => {
+  return dispatch => {
+    dispatch(submitFormToStore(formData));
+    const emptyFormFields = Object.keys(formData)
+      .map(value => formData[value])
+      .filter(x => x === '').length;
+    if (emptyFormFields === 0) {
+      fetch('http://localhost:8081/conferences', {
+        method: 'POST',
+        body: JSON.stringify(formData),
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
+        .then(res => console.log(res))
+        .catch(err => console.log(err));
+    }
+  };
+};
+
