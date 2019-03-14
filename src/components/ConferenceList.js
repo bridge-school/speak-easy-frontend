@@ -1,14 +1,22 @@
 import { connect } from 'react-redux';
 import React from 'react';
 import ConferenceCard from './ConferenceCard';
+import SearchBar from './SearchBar';
 
-const ConferenceList = ({ conferences }) => {
+const ConferenceList = ({ conferences, searchParam }) => {
+  console.log(searchParam);
+  const filteredList = conferences.filter(
+    item =>
+      item.eventName.toLowerCase().search(searchParam.toLowerCase()) !== -1
+  );
+
   return (
-    <section class=" mw5 mw7-ns center">
-      <h1 class="tl">Upcoming Conferences</h1>
-      {conferences &&
-        conferences.map(conference => (
-          <ConferenceCard conferenceData={conference} />
+    <section className=" mw5 mw7-ns center">
+      <h1 className="tl">Upcoming Conferences</h1>
+      <SearchBar />
+      {filteredList &&
+        filteredList.map(conference => (
+          <ConferenceCard key={conference.id} conferenceData={conference} />
         ))}
     </section>
   );
@@ -16,7 +24,8 @@ const ConferenceList = ({ conferences }) => {
 
 const mapStateToProps = store => {
   return {
-    conferences: store.mockConferenceData
+    conferences: store.mockConferenceData,
+    searchParam: store.searchParam
   };
 };
 
