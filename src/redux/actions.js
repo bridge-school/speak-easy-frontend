@@ -38,3 +38,34 @@ export const handleFormSubmit = formData => {
       alert('Form validation returned following errors:\n' + validateMessage);
   };
 };
+
+export const listFetchStart = () => {
+  return {
+    type: LIST_FETCH_START
+  };
+};
+
+export const listFetchSuccess = conferences => {
+  return {
+    type: LIST_FETCH_SUCCESS,
+    conferences
+  };
+};
+
+export const updateConferences = payload => {
+  return {
+    type: UPDATE_CONFERENCES,
+    payload
+  };
+};
+
+export const fetchConferenceData = (dispatch, url) => {
+  return dispatch => {
+    dispatch(listFetchStart());
+    fetch(url)
+      .then(response => response.json())
+      // .then(res => res.text())
+      // .then(text => console.log("What's happening: ", text));
+      .then(res => dispatch(updateConferences(res.data)));
+  };
+};
