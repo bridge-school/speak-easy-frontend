@@ -1,4 +1,5 @@
 import React from 'react';
+import { formatDate } from '../utils';
 import Compensation from '../assets/compensation.png';
 import Scholarship from '../assets/scholarship.png';
 import Conduct from '../assets/code-conduct.png';
@@ -36,29 +37,26 @@ const ConferenceCard = props => {
         </a>
         <p className="di fr black ma0">{submissionDueDate}</p>
       </div>
-      <p className="di pa0 mid-gray">{eventDate}</p>
+      <p className="di pa0 mid-gray">{formatDate(eventDate)}</p>
       <p className="di ph2 mid-gray">•</p>
       <p className="di pa0 mid-gray">{location}</p>
       <ul className=" mw10 pl0 pt3">
         <BlackOrGray
           isActive={isCompensated}
           icon={Compensation}
-          alt="dollar sign"
-        >
+          alt="dollar sign">
           Compensation
         </BlackOrGray>
         <BlackOrGray
           isActive={hasCodeOfConduct}
           icon={Conduct}
-          alt="check mark"
-        >
+          alt="check mark">
           Code of Conduct
         </BlackOrGray>
         <BlackOrGray
           isActive={hasDiversityScholarship}
           icon={Scholarship}
-          alt="graduation cap"
-        >
+          alt="graduation cap">
           Diversity Scholarship
         </BlackOrGray>
       </ul>
