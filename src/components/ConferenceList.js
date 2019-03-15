@@ -6,7 +6,7 @@ import { fetchConferenceData } from '../redux/actions';
 
 export class ConferenceList extends React.Component {
   componentDidMount() {
-    this.props.fetchData('http://localhost:8081/conferences');
+    this.props.fetchData();
   }
 
   render() {

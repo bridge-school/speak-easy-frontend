@@ -62,10 +62,8 @@ export const updateConferences = payload => {
 export const fetchConferenceData = (dispatch, url) => {
   return dispatch => {
     dispatch(listFetchStart());
-    fetch(url)
+    fetch('http://localhost:8081/conferences')
       .then(response => response.json())
-      // .then(res => res.text())
-      // .then(text => console.log("What's happening: ", text));
       .then(res => dispatch(updateConferences(res.data)));
   };
 };
