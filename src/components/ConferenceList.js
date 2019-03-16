@@ -40,7 +40,7 @@ const mapStateToProps = store => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    fetchData: url => dispatch(fetchConferenceData(url))
+    fetchData: () => dispatch(fetchConferenceData())
   };
 };
 
