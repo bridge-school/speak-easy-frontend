@@ -28,6 +28,7 @@ class Form extends React.Component {
     this.handleDatepicker = this.handleDatepicker.bind(this);
     this.handleSubmitButton = this.handleSubmitButton.bind(this);
   }
+
   handleSubmitButton(e) {
     e.preventDefault();
     this.props.handleSubmit(this.state);
