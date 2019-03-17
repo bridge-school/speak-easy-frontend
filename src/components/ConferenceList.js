@@ -10,7 +10,6 @@ export class ConferenceList extends React.Component {
   }
 
   render() {
-    console.log(this.props.searchParam);
     const filteredList = this.props.conferences.filter(
       item =>
         item.eventName
