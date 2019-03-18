@@ -44,40 +44,40 @@ class Form extends React.Component {
   }
   render() {
     return (
-      <div className="w-60 center">
+      <div className="w-60-l center">
         <div className=" w-100 sans-serif pa2 f3 tl">Submit an Event</div>
         <form className="ba br1 b--lavender pa2  bg-white">
-          <div className="dib w-50 tl pa2">
+          <div className="dib w-50-ns tl pa2">
             <TextInput
               {...formConfig.eventName}
               handleChange={this.handleChange}
             />
           </div>
-          <div className="dib w-50 tl pa2">
+          <div className="dib w-50-ns tl pa2">
             <TextInput
               {...formConfig.eventWebsite}
               handleChange={this.handleChange}
             />
           </div>
-          <div className="dib w-50 tl pa2">
+          <div className="dib w-50-ns tl pa2">
             <Datepicker
               {...formConfig.eventDate}
               handleDatepicker={this.handleDatepicker}
             />
           </div>
-          <div className="dib w-50 tl pa2">
+          <div className="dib w-50-ns tl pa2">
             <Autocomplete
               {...formConfig.eventLocation}
               handleAutocomplete={this.handleAutocomplete}
             />
           </div>
-          <div className="dib w-50 tl pa2">
+          <div className="dib w-50-ns tl pa2">
             <Datepicker
               {...formConfig.submissionDueDate}
               handleDatepicker={this.handleDatepicker}
             />
           </div>
-          <div className="dib w-50 tl pa2">
+          <div className="dib w-50-ns tl pa2">
             <TextInput
               {...formConfig.submissionWebsite}
               handleChange={this.handleChange}
@@ -96,13 +96,13 @@ class Form extends React.Component {
             handleChange={this.handleChange}
           />
           <hr />
-          <div className="dib w-50 tl pa2">
+          <div className="dib w-50-ns tl pa2">
             <TextInput
               {...formConfig.contactName}
               handleChange={this.handleChange}
             />
           </div>
-          <div className="dib w-50 tl pa2">
+          <div className="dib w-50-ns tl pa2">
             <TextInput
               {...formConfig.contactEmail}
               handleChange={this.handleChange}
