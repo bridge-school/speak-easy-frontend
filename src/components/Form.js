@@ -1,4 +1,5 @@
 import React from 'react';
+import Recaptcha from 'react-recaptcha';
 import TextInput from './TextInput';
 import RadioButton from './RadioButton';
 import Autocomplete from './Autocomplete';
@@ -21,17 +22,35 @@ class Form extends React.Component {
       hasCodeOfConduct: '',
       hasDiversityScholarships: '',
       contactName: '',
-      contactEmail: ''
+      contactEmail: '',
+      isVerified: false
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleAutocomplete = this.handleAutocomplete.bind(this);
     this.handleDatepicker = this.handleDatepicker.bind(this);
     this.handleSubmitButton = this.handleSubmitButton.bind(this);
+    this.recaptchaLoaded = this.recaptchaLoaded.bind(this);
+    this.verifyCallback = this.verifyCallback.bind(this);
+  }
+
+  recaptchaLoaded() {
+    console.log('reCaptcha successfully loaded');
   }
 
   handleSubmitButton(e) {
     e.preventDefault();
-    this.props.handleSubmit(this.state);
+    if (this.state.isVerified) {
+      this.props.handleSubmit(this.state);
+    } else {
+      alert('Please verify that you are a human!');
+    }
+  }
+  verifyCallback(response) {
+    if (response) {
+      this.setState({
+        isVerified: true
+      });
+    }
   }
   handleChange(e) {
     this.setState({ [e.target.name]: e.target.value });
@@ -42,6 +61,7 @@ class Form extends React.Component {
   handleDatepicker(selectedDate, dateName) {
     this.setState({ [dateName]: selectedDate });
   }
+
   render() {
     return (
       <div className="w-60-l center">
@@ -109,6 +129,14 @@ class Form extends React.Component {
             />
           </div>
           <hr />
+          <div className="pa2">
+            <Recaptcha
+              sitekey={process.env.REACT_APP_RECAPTCHA_SITEKEY}
+              render="explicit"
+              onloadCallback={this.recaptchaLoaded}
+              verifyCallback={this.verifyCallback}
+            />
+          </div>
           <div className="w-20 tl">
             <button
               title="Submit Event"
