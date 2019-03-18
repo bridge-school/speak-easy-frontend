@@ -16,7 +16,7 @@ export class ConferenceList extends React.Component {
           .toLowerCase()
           .search(this.props.searchParam.toLowerCase()) !== -1
     );
-
+    console.log(this.props.conferences);
     return (
       <section className=" mw5 mw7-ns center">
         <h1 className="tl">Upcoming Conferences</h1>
