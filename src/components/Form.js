@@ -1,4 +1,5 @@
 import React from 'react';
+import Recaptcha from 'react-recaptcha';
 import TextInput from './TextInput';
 import RadioButton from './RadioButton';
 import Autocomplete from './Autocomplete';
@@ -21,17 +22,35 @@ class Form extends React.Component {
       hasCodeOfConduct: '',
       hasDiversityScholarships: '',
       contactName: '',
-      contactEmail: ''
+      contactEmail: '',
+      isVerified: false
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleAutocomplete = this.handleAutocomplete.bind(this);
     this.handleDatepicker = this.handleDatepicker.bind(this);
     this.handleSubmitButton = this.handleSubmitButton.bind(this);
+    this.recaptchaLoaded = this.recaptchaLoaded.bind(this);
+    this.verifyCallback = this.verifyCallback.bind(this);
+  }
+
+  recaptchaLoaded() {
+    console.log('reCaptcha successfully loaded');
   }
 
   handleSubmitButton(e) {
     e.preventDefault();
-    this.props.handleSubmit(this.state);
+    if (this.state.isVerified) {
+      this.props.handleSubmit(this.state);
+    } else {
+      alert('Please verify that you are a human!');
+    }
+  }
+  verifyCallback(response) {
+    if (response) {
+      this.setState({
+        isVerified: true
+      });
+    }
   }
   handleChange(e) {
     this.setState({ [e.target.name]: e.target.value });
@@ -42,42 +61,43 @@ class Form extends React.Component {
   handleDatepicker(selectedDate, dateName) {
     this.setState({ [dateName]: selectedDate });
   }
+
   render() {
     return (
-      <div className="w-60 center">
+      <div className="w-60-l center">
         <div className=" w-100 sans-serif pa2 f3 tl">Submit an Event</div>
         <form className="ba br1 b--lavender pa2  bg-white">
-          <div className="dib w-50 tl pa2">
+          <div className="dib w-50-ns tl pa2">
             <TextInput
               {...formConfig.eventName}
               handleChange={this.handleChange}
             />
           </div>
-          <div className="dib w-50 tl pa2">
+          <div className="dib w-50-ns tl pa2">
             <TextInput
               {...formConfig.eventWebsite}
               handleChange={this.handleChange}
             />
           </div>
-          <div className="dib w-50 tl pa2">
+          <div className="dib w-50-ns tl pa2">
             <Datepicker
               {...formConfig.eventDate}
               handleDatepicker={this.handleDatepicker}
             />
           </div>
-          <div className="dib w-50 tl pa2">
+          <div className="dib w-50-ns tl pa2">
             <Autocomplete
               {...formConfig.eventLocation}
               handleAutocomplete={this.handleAutocomplete}
             />
           </div>
-          <div className="dib w-50 tl pa2">
+          <div className="dib w-50-ns tl pa2">
             <Datepicker
               {...formConfig.submissionDueDate}
               handleDatepicker={this.handleDatepicker}
             />
           </div>
-          <div className="dib w-50 tl pa2">
+          <div className="dib w-50-ns tl pa2">
             <TextInput
               {...formConfig.submissionWebsite}
               handleChange={this.handleChange}
@@ -96,19 +116,27 @@ class Form extends React.Component {
             handleChange={this.handleChange}
           />
           <hr />
-          <div className="dib w-50 tl pa2">
+          <div className="dib w-50-ns tl pa2">
             <TextInput
               {...formConfig.contactName}
               handleChange={this.handleChange}
             />
           </div>
-          <div className="dib w-50 tl pa2">
+          <div className="dib w-50-ns tl pa2">
             <TextInput
               {...formConfig.contactEmail}
               handleChange={this.handleChange}
             />
           </div>
           <hr />
+          <div className="pa2">
+            <Recaptcha
+              sitekey={process.env.REACT_APP_RECAPTCHA_SITEKEY}
+              render="explicit"
+              onloadCallback={this.recaptchaLoaded}
+              verifyCallback={this.verifyCallback}
+            />
+          </div>
           <div className="w-20 tl">
             <button
               title="Submit Event"
