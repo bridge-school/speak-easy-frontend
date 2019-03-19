@@ -8,7 +8,7 @@ import Datepicker from './Datepicker';
 import formConfig from './formConfig.json';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
-import { handleFormSubmit, formReset } from '../redux/actions';
+import { handleFormSubmit } from '../redux/actions';
 
 const LoadingState = () => (
   <div className="pa7">
@@ -43,10 +43,6 @@ class Form extends React.Component {
     this.handleSubmitButton = this.handleSubmitButton.bind(this);
     this.recaptchaLoaded = this.recaptchaLoaded.bind(this);
     this.verifyCallback = this.verifyCallback.bind(this);
-  }
-
-  componentDidMount() {
-    this.props.resetForm();
   }
 
   recaptchaLoaded() {
@@ -183,8 +179,7 @@ class Form extends React.Component {
   }
 }
 const mapDispatchToProps = dispatch => ({
-  handleSubmit: state => dispatch(handleFormSubmit(state)),
-  resetForm: () => dispatch(formReset())
+  handleSubmit: state => dispatch(handleFormSubmit(state))
 });
 
 const mapStateToProps = state => ({

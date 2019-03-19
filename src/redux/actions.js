@@ -54,6 +54,7 @@ export const handleFormSubmit = formData => {
       })
         .then(() => {
           dispatch(formSubmitSuccess());
+          dispatch(formReset());
         })
         .catch(() =>
           dispatch(formSubmitError('Something went wrong. Please try again.'))
