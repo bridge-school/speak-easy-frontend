@@ -18,38 +18,32 @@ class Header extends Component {
     this.setState({ isAppOnForm: false });
   }
   render() {
-    const submitEventButtonVisibility = this.state.isAppOnForm
-      ? { display: 'none' }
-      : {};
-    const backToConferencesButtonVisibility = this.state.isAppOnForm
-      ? {}
-      : { display: 'none' };
-    console.log('s', submitEventButtonVisibility);
-    console.log('b', backToConferencesButtonVisibility);
+    const backBtn = (
+      <Link to="/" onClick={this.handleBackButtonClick}>
+        <div className="fr">
+          <Button title="Back to Conferences" />
+        </div>
+      </Link>
+    );
+    const submitBtn = (
+      <Link to="/submit-conference" onClick={this.handleButtonClick}>
+        <div className="fr">
+          <Button title="Submit Event" />
+        </div>
+      </Link>
+    );
+    const btn = this.state.isAppOnForm ? backBtn : submitBtn;
     return (
       <header className="bb br1 b--lavender pa3 bg-white f4 tl serif i">
         <h1 className="w-60 f3 center ma0 mb2 normal">
-          <Link to="/" className="black no-underline">
-            Call for Diversity
-          </Link>
           <Link
             to="/"
-            style={backToConferencesButtonVisibility}
+            className="black no-underline"
             onClick={this.handleBackButtonClick}
           >
-            <div className="fr">
-              <Button title="Back to Conferences" />
-            </div>
+            Call for Diversity
           </Link>
-          <Link
-            to="/submit-conference"
-            onClick={this.handleButtonClick}
-            style={submitEventButtonVisibility}
-          >
-            <div className="fr">
-              <Button title="Submit Event" />
-            </div>
-          </Link>
+          {btn}
         </h1>
       </header>
     );
