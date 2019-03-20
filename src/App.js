@@ -7,6 +7,7 @@ import './App.scss';
 import Header from './components/Header';
 import Form from './components/Form';
 import ConferenceList from './components/ConferenceList';
+import FormSuccess from './components/FormSuccess';
 
 class App extends Component {
   render() {
@@ -17,6 +18,7 @@ class App extends Component {
             <Route path="/" component={Header} />
             <Route exact path="/" component={ConferenceList} />
             <Route path="/submit-conference" component={Form} />
+            <Route path="/success" component={FormSuccess} />
           </div>
         </BrowserRouter>
       </div>

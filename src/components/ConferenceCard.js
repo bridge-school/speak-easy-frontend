@@ -5,7 +5,8 @@ import Scholarship from '../assets/scholarship.png';
 import Conduct from '../assets/code-conduct.png';
 
 const BlackOrGray = ({ isActive, children, icon, alt }) => {
-  return isActive ? (
+  console.log(isActive);
+  return isActive === 'Yes' ? (
     <li className="dib pr5">
       <img className="di mw1 ph1" src={icon} alt={alt} />
       <span className="black">{children}</span>
@@ -34,12 +35,12 @@ class ConferenceCard extends Component {
       eventLocation,
       isCompensated,
       hasCodeOfConduct,
-      hasDiversityScholarship,
+      hasDiversityScholarships,
       contactEmail,
       contactName
     } = this.props.conferenceData;
     return (
-      <div className="br3 ba b--black-20 mw5 mw7-ns center bg-white pa3  sans-serif ma3 tl">
+      <div className="br3 ba b--black-20 mw5 mw7-ns center bg-white pa3 sans-serif ma3 tl">
         <div className="w-100 cf sans-serif pv2">
           <a href={eventWebsite}>
             <h3 className="di tl bright-blue">{eventName}</h3>
@@ -53,22 +54,19 @@ class ConferenceCard extends Component {
           <BlackOrGray
             isActive={isCompensated}
             icon={Compensation}
-            alt="dollar sign"
-          >
+            alt="dollar sign">
             Compensation
           </BlackOrGray>
           <BlackOrGray
             isActive={hasCodeOfConduct}
             icon={Conduct}
-            alt="check mark"
-          >
+            alt="check mark">
             Code of Conduct
           </BlackOrGray>
           <BlackOrGray
-            isActive={hasDiversityScholarship}
+            isActive={hasDiversityScholarships}
             icon={Scholarship}
-            alt="graduation cap"
-          >
+            alt="graduation cap">
             Diversity Scholarship
           </BlackOrGray>
         </ul>
@@ -81,8 +79,7 @@ class ConferenceCard extends Component {
         <a
           className="f6 link dim ph3 pv2 mb2 dib bright-blue mv2"
           href="#0"
-          onClick={() => this.setState({ isExpanded: !this.state.isExpanded })}
-        >
+          onClick={() => this.setState({ isExpanded: !this.state.isExpanded })}>
           {this.state.isExpanded ? 'See less' : 'See more...'}
         </a>
       </div>
