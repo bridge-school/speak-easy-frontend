@@ -9,14 +9,15 @@ export class ConferenceList extends React.Component {
     this.props.fetchData();
   }
 
+  searchMatches = field =>
+    field.toLowerCase().search(this.props.searchParam.toLowerCase()) !== -1;
+
   render() {
     const filteredList = this.props.conferences.filter(
       item =>
-        item.eventName
-          .toLowerCase()
-          .search(this.props.searchParam.toLowerCase()) !== -1
+        this.searchMatches(item.eventName) ||
+        this.searchMatches(item.eventLocation)
     );
-    console.log(this.props.conferences);
     return (
       <section className=" mw5 mw7-ns center">
         <h2 className=" w-100 sans-serif pa0 f2 tl fw2 mh0 mt4 mb3">
