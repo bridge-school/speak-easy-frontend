@@ -5,7 +5,8 @@ import Scholarship from '../assets/scholarship.png';
 import Conduct from '../assets/code-conduct.png';
 
 const BlackOrGray = ({ isActive, children, icon, alt }) => {
-  return isActive ? (
+  console.log(isActive);
+  return isActive === 'Yes' ? (
     <li className="dib pr5">
       <img className="di mw1 ph1" src={icon} alt={alt} />
       <span className="black">{children}</span>
@@ -34,7 +35,7 @@ class ConferenceCard extends Component {
       eventLocation,
       isCompensated,
       hasCodeOfConduct,
-      hasDiversityScholarship,
+      hasDiversityScholarships,
       contactEmail,
       contactName
     } = this.props.conferenceData;
@@ -63,7 +64,7 @@ class ConferenceCard extends Component {
             Code of Conduct
           </BlackOrGray>
           <BlackOrGray
-            isActive={hasDiversityScholarship}
+            isActive={hasDiversityScholarships}
             icon={Scholarship}
             alt="graduation cap">
             Diversity Scholarship
