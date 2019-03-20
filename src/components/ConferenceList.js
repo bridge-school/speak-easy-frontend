@@ -9,12 +9,12 @@ export class ConferenceList extends React.Component {
     this.props.fetchData();
   }
 
+  filterBy = field =>
+    field.toLowerCase().search(this.props.searchParam.toLowerCase()) !== -1;
+
   render() {
     const filteredList = this.props.conferences.filter(
-      item =>
-        item.eventName
-          .toLowerCase()
-          .search(this.props.searchParam.toLowerCase()) !== -1
+      item => this.filterBy(item.eventName) || this.filterBy(item.eventLocation)
     );
     console.log(this.props.conferences);
     return (
