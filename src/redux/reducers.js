@@ -7,8 +7,11 @@ import {
   LIST_FETCH_START,
   LIST_FETCH_SUCCESS,
   UPDATE_CONFERENCES,
+  UPDATE_CONFERENCES_TO_DISPLAY,
   UPDATE_SEARCH_PARAM,
-  FORM_RESET
+  FORM_RESET,
+  TOGGLE_FILTER,
+  UPDATE_SORT_BY
 } from './actions';
 
 const formData = (state = {}, action) => {
@@ -83,6 +86,15 @@ const conferences = (state = [], action) => {
   }
 };
 
+const conferencesToDisplay = (state = [], action) => {
+  switch (action.type) {
+    case UPDATE_CONFERENCES_TO_DISPLAY:
+      return action.payload;
+    default:
+      return state;
+  }
+};
+
 const searchParam = (state = '', action) => {
   switch (action.type) {
     case UPDATE_SEARCH_PARAM:
@@ -92,14 +104,42 @@ const searchParam = (state = '', action) => {
   }
 };
 
+const filters = (
+  state = {
+    compensation: false,
+    codeOfConduct: false,
+    diversityScholarship: false
+  },
+  action
+) => {
+  switch (action.type) {
+    case TOGGLE_FILTER:
+      return { ...state, [action.key]: !state[action.key] };
+    default:
+      return state;
+  }
+};
+
+const sortBy = (state = 'default', action) => {
+  switch (action.type) {
+    case UPDATE_SORT_BY:
+      return action.payload;
+    default:
+      return state;
+  }
+};
+
 const reducers = combineReducers({
-  formData,
-  isFormSubmitting,
-  formSubmitted,
-  formErrorMessage,
-  isListLoading,
   conferences,
-  searchParam
+  conferencesToDisplay,
+  filters,
+  formData,
+  formErrorMessage,
+  formSubmitted,
+  isFormSubmitting,
+  isListLoading,
+  searchParam,
+  sortBy
 });
 
 export default reducers;
