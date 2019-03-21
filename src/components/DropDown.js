@@ -2,7 +2,7 @@ import React from 'react';
 
 const DropDown = props => {
   return (
-    <div className="flex items-center flex-wrap flex-grow-1">
+    <div className="flex items-center flex-wrap flex-grow-1 flex-shrink-0">
       <label htmlFor="filter-select" className="fw2 mb2">
         Sort by
       </label>

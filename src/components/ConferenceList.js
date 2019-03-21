@@ -3,20 +3,14 @@ import React from 'react';
 import ConferenceCard from './ConferenceCard';
 import SearchBar from './SearchBar';
 import DropDown from './DropDown';
-import { fetchConferenceData } from '../redux/actions';
-import Button from './Button';
+import { fetchConferenceData, updateFilters } from '../redux/actions';
 import Filters from './Filters';
 
 export class ConferenceList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      selectedValue: 'default',
-      filters: {
-        compensation: true,
-        codeOfConduct: true,
-        diversityScholarship: true
-      }
+      selectedValue: 'default'
     };
     this.handleDropDown = this.handleDropDown.bind(this);
   }
@@ -32,19 +26,11 @@ export class ConferenceList extends React.Component {
     this.setState({ selectedValue: event.target.value });
   };
 
-  toggleFilter = key => {
-    this.setState({
-      filters: {
-        ...this.state.filters,
-        [key]: !this.state.filters[key]
-      }
-    });
-  };
-
   render() {
+    const { conferences, updateFilters, filters } = this.props;
     const isDefault = this.state.selectedValue === 'default';
 
-    const filteredList = this.props.conferences.filter(
+    const filteredList = conferences.filter(
       item =>
         this.searchMatches(item.eventName) ||
         this.searchMatches(item.eventLocation)
@@ -56,7 +42,7 @@ export class ConferenceList extends React.Component {
         <ConferenceCard key={conference.id} conferenceData={conference} />
       ));
 
-    const filteredByDate = this.props.conferences
+    const filteredByDate = conferences
       .filter(
         conference => new Date(conference.submissionDueDate) - new Date() < 7
       )
@@ -68,10 +54,7 @@ export class ConferenceList extends React.Component {
       <section className=" mw5 mw7-ns center">
         <SearchBar />
         <div className="flex">
-          <Filters
-            toggleFilter={this.toggleFilter}
-            filters={this.state.filters}
-          />
+          <Filters toggleFilter={updateFilters} filters={filters} />
           <DropDown
             value={this.state.selectedValue}
             onChange={this.handleDropDown}
@@ -91,14 +74,16 @@ export class ConferenceList extends React.Component {
 
 const mapStateToProps = store => {
   return {
-    conferences: store.conferences,
-    searchParam: store.searchParam
+    conferences: store.conferencesToDisplay,
+    searchParam: store.searchParam,
+    filters: store.filters
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    fetchData: () => dispatch(fetchConferenceData())
+    fetchData: () => dispatch(fetchConferenceData()),
+    updateFilters: filterKey => dispatch(updateFilters(filterKey))
   };
 };
 

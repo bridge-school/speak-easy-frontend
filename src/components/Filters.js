@@ -1,6 +1,5 @@
 import React from 'react';
 import classNames from 'classnames';
-import DropDown from './DropDown';
 
 const FilterButton = ({ children, isActive, id, toggleFilter }) => {
   const buttonClasses = classNames('f6', 'br2', 'bright-blue', 'mr2', 'h2', {
@@ -42,10 +41,10 @@ const Filters = ({ toggleFilter, filters }) => {
   ];
 
   return (
-    <div className="flex items-center flex-wrap">
-      <label className="fw2 w-100 tl mb2">Filter By</label>
+    <div className="flex items-center flex-wrap w-60">
+      <label className="fw2 w-100 tl mb2">Only show events with</label>
       {buttons.map(button => (
-        <FilterButton toggleFilter={toggleFilter} {...button}>
+        <FilterButton key={button.id} toggleFilter={toggleFilter} {...button}>
           {button.name}
         </FilterButton>
       ))}

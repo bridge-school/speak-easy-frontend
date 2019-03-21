@@ -7,8 +7,10 @@ import {
   LIST_FETCH_START,
   LIST_FETCH_SUCCESS,
   UPDATE_CONFERENCES,
+  UPDATE_CONFERENCES_TO_DISPLAY,
   UPDATE_SEARCH_PARAM,
-  FORM_RESET
+  FORM_RESET,
+  TOGGLE_FILTER
 } from './actions';
 
 const formData = (state = {}, action) => {
@@ -83,10 +85,35 @@ const conferences = (state = [], action) => {
   }
 };
 
+const conferencesToDisplay = (state = [], action) => {
+  switch (action.type) {
+    case UPDATE_CONFERENCES_TO_DISPLAY:
+      return action.payload;
+    default:
+      return state;
+  }
+};
+
 const searchParam = (state = '', action) => {
   switch (action.type) {
     case UPDATE_SEARCH_PARAM:
       return action.payload;
+    default:
+      return state;
+  }
+};
+
+const filters = (
+  state = {
+    compensation: false,
+    codeOfConduct: false,
+    diversityScholarship: false
+  },
+  action
+) => {
+  switch (action.type) {
+    case TOGGLE_FILTER:
+      return { ...state, [action.key]: !state[action.key] };
     default:
       return state;
   }
@@ -99,7 +126,9 @@ const reducers = combineReducers({
   formErrorMessage,
   isListLoading,
   conferences,
-  searchParam
+  conferencesToDisplay,
+  searchParam,
+  filters
 });
 
 export default reducers;

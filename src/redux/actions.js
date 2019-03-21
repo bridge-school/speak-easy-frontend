@@ -8,8 +8,9 @@ export const FORM_RESET = 'FORM_RESET';
 export const LIST_FETCH_START = 'LIST_FETCH_START';
 export const LIST_FETCH_SUCCESS = 'LIST_FETCH_SUCCESS';
 export const UPDATE_CONFERENCES = 'UPDATE_CONFERENCES';
-
+export const UPDATE_CONFERENCES_TO_DISPLAY = 'UPDATE_CONFERENCES_TO_DISPLAY';
 export const UPDATE_SEARCH_PARAM = 'UPDATE_SEARCH_PARAM';
+export const TOGGLE_FILTER = 'TOGGLE_FILTER';
 
 export const onSearchChange = input => ({
   type: UPDATE_SEARCH_PARAM,
@@ -35,6 +36,11 @@ export const formSubmitSuccess = () => ({
 
 export const formReset = () => ({
   type: FORM_RESET
+});
+
+const toggleFilter = key => ({
+  type: TOGGLE_FILTER,
+  key
 });
 
 export const handleFormSubmit = formData => {
@@ -85,11 +91,47 @@ export const updateConferences = payload => {
   };
 };
 
-export const fetchConferenceData = (dispatch, url) => {
+export const updateConferencesToDisplay = payload => {
+  return {
+    type: UPDATE_CONFERENCES_TO_DISPLAY,
+    payload
+  };
+};
+
+export const fetchConferenceData = () => {
   return dispatch => {
     dispatch(listFetchStart());
     fetch('http://localhost:8081/conferences')
       .then(response => response.json())
-      .then(res => dispatch(updateConferences(res.data)));
+      .then(res => {
+        dispatch(updateConferences(res.data));
+        dispatch(updateConferencesToDisplay(res.data));
+      });
+  };
+};
+
+const isTrue = value => value === 'Yes';
+
+export const updateFilters = filterKey => {
+  return (dispatch, getState) => {
+    dispatch(toggleFilter(filterKey));
+
+    const { conferences, filters } = getState();
+    const {
+      compensation: hasCompensation,
+      codeOfConduct: hasCodeOfConduct,
+      diversityScholarship: hasDiversityScholarship
+    } = filters;
+
+    const filteredConferences = conferences.filter(
+      conference =>
+        (hasCompensation ? isTrue(conference.isCompensated) : true) &&
+        (hasCodeOfConduct ? isTrue(conference.hasCodeOfConduct) : true) &&
+        (hasDiversityScholarship
+          ? isTrue(conference.hasDiversityScholarships)
+          : true)
+    );
+
+    dispatch(updateConferencesToDisplay(filteredConferences));
   };
 };
