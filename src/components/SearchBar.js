@@ -12,8 +12,9 @@ const SearchBar = ({ searchParam, onSearchChange }) => {
       style={{
         backgroundImage: `url(${SearchIcon})`,
         backgroundRepeat: 'no-repeat',
-        backgroundSize: '40px',
-        backgroundPositionY: '5px'
+        backgroundSize: '20px',
+        backgroundPositionY: '15px',
+        backgroundPositionX: '10px'
       }}
       className="ba b--black-20 border-box w-100 center bg-white pa3 pl5 sans-serif ma3 tl "
       value={searchParam}
