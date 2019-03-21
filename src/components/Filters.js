@@ -1,12 +1,12 @@
 import React from 'react';
 import classNames from 'classnames';
+import DropDown from './DropDown';
 
 const FilterButton = ({ children, isActive, id, toggleFilter }) => {
-  const buttonClasses = classNames('f6', 'pa2', 'br2', 'white', 'mh1', {
-    'bg-bright-blue': isActive,
+  const buttonClasses = classNames('f6', 'br2', 'bright-blue', 'mr2', 'h2', {
+    'b--bright-blue': isActive,
     'bg-white': !isActive,
-    'o-80': !isActive,
-    'bright-blue': !isActive
+    grey: !isActive
   });
 
   return (
@@ -42,8 +42,8 @@ const Filters = ({ toggleFilter, filters }) => {
   ];
 
   return (
-    <div className="flex items-center">
-      <div className="fw2">Filter By:</div>
+    <div className="flex items-center flex-wrap">
+      <label className="fw2 w-100 tl mb2">Filter By</label>
       {buttons.map(button => (
         <FilterButton toggleFilter={toggleFilter} {...button}>
           {button.name}

@@ -67,14 +67,17 @@ export class ConferenceList extends React.Component {
     return (
       <section className=" mw5 mw7-ns center">
         <SearchBar />
-        <DropDown
-          value={this.state.selectedValue}
-          onChange={this.handleDropDown}
-        />
-        <Filters
-          toggleFilter={this.toggleFilter}
-          filters={this.state.filters}
-        />
+        <div className="flex">
+          <Filters
+            toggleFilter={this.toggleFilter}
+            filters={this.state.filters}
+          />
+          <DropDown
+            value={this.state.selectedValue}
+            onChange={this.handleDropDown}
+          />
+        </div>
+
         <h2 className="w-100 sans-serif pa0 f2 tl fw2 mh0 mt4 mb3">
           {isDefault
             ? 'Upcoming Conferences'
