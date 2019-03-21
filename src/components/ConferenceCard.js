@@ -5,7 +5,6 @@ import Scholarship from '../assets/scholarship.png';
 import Conduct from '../assets/code-conduct.png';
 
 const BlackOrGray = ({ isActive, children, icon, alt }) => {
-  console.log(isActive);
   return isActive === 'Yes' ? (
     <li className="dib pr5">
       <img className="di mw1 ph1" src={icon} alt={alt} />
