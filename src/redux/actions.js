@@ -1,5 +1,10 @@
 import { isFormDataValid } from '../utils';
 
+const API_URL =
+  process.env.NODE_ENV === 'production'
+    ? 'http://speak-easy-backend.bridgeschoolapp.io'
+    : 'http://localhost:8081';
+
 export const UPDATE_FORM_DATA = 'UPDATE_FORM_DATA';
 export const FORM_SUBMIT_START = 'FORM_SUBMIT_START';
 export const FORM_SUBMIT_ERROR = 'FORM_SUBMIT_ERROR';
@@ -45,7 +50,7 @@ export const handleFormSubmit = formData => {
 
     if (validateMessage.length === 0) {
       dispatch(formSubmitStart());
-      fetch('http://localhost:8081/conferences', {
+      fetch(`${API_URL}/conferences`, {
         method: 'POST',
         body: JSON.stringify(formData),
         headers: {
@@ -85,10 +90,10 @@ export const updateConferences = payload => {
   };
 };
 
-export const fetchConferenceData = (dispatch, url) => {
+export const fetchConferenceData = () => {
   return dispatch => {
     dispatch(listFetchStart());
-    fetch('http://localhost:8081/conferences')
+    fetch(`${API_URL}/conferences`)
       .then(response => response.json())
       .then(res => dispatch(updateConferences(res.data)));
   };
