@@ -7,7 +7,9 @@ const DropDown = props => {
 
       <select id="filter-select" onChange={props.onChange}>
         <option value="default">--Please choose an option--</option>
-        <option value="submissionDate">Submission Date</option>
+        <option value="submissionDate">
+          Submission Deadline (within 1 week)
+        </option>
       </select>
     </div>
   );

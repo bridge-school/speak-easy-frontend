@@ -32,44 +32,45 @@ export class ConferenceList extends React.Component {
         this.searchMatches(item.eventLocation)
     );
 
+    const conferenceList = (
+      <section className=" mw5 mw7-ns center">
+        <h2 className=" w-100 sans-serif pa0 f2 tl fw2 mh0 mt4 mb3">
+          Upcoming Conferences
+        </h2>
+        {filteredList &&
+          filteredList.map(conference => (
+            <ConferenceCard key={conference.id} conferenceData={conference} />
+          ))}
+      </section>
+    );
+
     const filteredByDate = this.props.conferences.filter(
       conference => new Date(conference.submissionDueDate) - new Date() < 7
     );
 
-    if (this.state.selectedValue === 'default') {
-      return (
-        <section className=" mw5 mw7-ns center">
-          <SearchBar />
-          <DropDown
-            value={this.state.selectedValue}
-            onChange={this.handleDropDown}
-          />
-          <h2 className=" w-100 sans-serif pa0 f2 tl fw2 mh0 mt4 mb3">
-            Upcoming Conferences
-          </h2>
-          {filteredList &&
-            filteredList.map(conference => (
-              <ConferenceCard key={conference.id} conferenceData={conference} />
-            ))}
-        </section>
-      );
-    } else if (this.state.selectedValue === 'submissionDate') {
-      return (
-        <section className=" mw5 mw7-ns center">
-          <SearchBar />
-          <DropDown
-            value={this.state.selectedValue}
-            onChange={this.handleDropDown}
-          />
-          <h2 className=" w-100 sans-serif pa0 f2 tl fw2 mh0 mt4 mb3">
-            Events with Upcoming Submission Dates
-          </h2>
-          {filteredByDate.map(conference => (
-            <ConferenceCard key={conference.id} conferenceData={conference} />
-          ))}
-        </section>
-      );
-    }
+    const filteredConferenceList = (
+      <section className=" mw5 mw7-ns center">
+        <h2 className=" w-100 sans-serif pa0 f2 tl fw2 mh0 mt4 mb3">
+          Events with Upcoming Submission Dates
+        </h2>
+        {filteredByDate.map(conference => (
+          <ConferenceCard key={conference.id} conferenceData={conference} />
+        ))}
+      </section>
+    );
+
+    return (
+      <section className=" mw5 mw7-ns center">
+        <SearchBar />
+        <DropDown
+          value={this.state.selectedValue}
+          onChange={this.handleDropDown}
+        />
+        {this.state.selectedValue === 'submissionDate'
+          ? filteredConferenceList
+          : conferenceList}
+      </section>
+    );
   }
 }
 
