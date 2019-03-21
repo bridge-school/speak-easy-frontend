@@ -40,7 +40,7 @@ class ConferenceCard extends Component {
       submissionWebsite
     } = this.props.conferenceData;
     return (
-      <div className="br3 ba b--black-20 mw5 mw7-ns center bg-white pa3 sans-serif ma3 tl">
+      <div className="br3 ba b--black-20 mw7-l w-100 center bg-white pa3 sans-serif ma3 tl">
         <div className="w-100 cf sans-serif pv2">
           <a href={eventWebsite}>
             <h3 className="di tl bright-blue">{eventName}</h3>

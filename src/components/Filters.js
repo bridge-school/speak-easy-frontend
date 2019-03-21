@@ -4,7 +4,7 @@ import classNames from 'classnames';
 const FilterButton = ({ children, isActive, id, toggleFilter }) => {
   const buttonClasses = classNames('f6', 'br2', 'bright-blue', 'mr2', 'h2', {
     'b--bright-blue': isActive,
-    'bg-white': !isActive,
+    'bg-dark-grey': !isActive,
     grey: !isActive
   });
 
@@ -41,7 +41,7 @@ const Filters = ({ toggleFilter, filters }) => {
   ];
 
   return (
-    <div className="flex items-center flex-wrap w-60">
+    <div className="flex items-center flex-wrap w-60-ns">
       <label className="fw2 w-100 tl mb2">Only show events with</label>
       {buttons.map(button => (
         <FilterButton key={button.id} toggleFilter={toggleFilter} {...button}>
