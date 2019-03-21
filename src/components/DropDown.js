@@ -11,7 +11,9 @@ const DropDown = props => {
         onChange={props.onChange}
         className="h2 f6 bg-white b--bright-blue bright-blue pa2 w-100">
         <option value="default">Please choose an option</option>
-        <option value="submissionDate">Submission Deadline</option>
+        <option value="submissionDueDate">Submission Deadline</option>
+        <option value="eventDate">Event Date</option>
+        <option value="eventName">Event Name</option>
       </select>
     </div>
   );

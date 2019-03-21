@@ -3,15 +3,16 @@ import React from 'react';
 import ConferenceCard from './ConferenceCard';
 import SearchBar from './SearchBar';
 import DropDown from './DropDown';
-import { fetchConferenceData, updateFilters } from '../redux/actions';
+import {
+  fetchConferenceData,
+  updateFilters,
+  updateSort
+} from '../redux/actions';
 import Filters from './Filters';
 
 export class ConferenceList extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      selectedValue: 'default'
-    };
     this.handleDropDown = this.handleDropDown.bind(this);
   }
 
@@ -23,12 +24,11 @@ export class ConferenceList extends React.Component {
     field.toLowerCase().search(this.props.searchParam.toLowerCase()) !== -1;
 
   handleDropDown = event => {
-    this.setState({ selectedValue: event.target.value });
+    this.props.updateSort(event.target.value);
   };
 
   render() {
-    const { conferences, updateFilters, filters } = this.props;
-    const isDefault = this.state.selectedValue === 'default';
+    const { conferences, updateFilters, filters, selectedValue } = this.props;
 
     const filteredList = conferences.filter(
       item =>
@@ -42,31 +42,18 @@ export class ConferenceList extends React.Component {
         <ConferenceCard key={conference.id} conferenceData={conference} />
       ));
 
-    const filteredByDate = conferences
-      .filter(
-        conference => new Date(conference.submissionDueDate) - new Date() < 7
-      )
-      .map(conference => (
-        <ConferenceCard key={conference.id} conferenceData={conference} />
-      ));
-
     return (
       <section className=" mw5 mw7-ns center">
         <SearchBar />
         <div className="flex">
           <Filters toggleFilter={updateFilters} filters={filters} />
-          <DropDown
-            value={this.state.selectedValue}
-            onChange={this.handleDropDown}
-          />
+          <DropDown value={selectedValue} onChange={this.handleDropDown} />
         </div>
 
         <h2 className="w-100 sans-serif pa0 f2 tl fw2 mh0 mt4 mb3">
-          {isDefault
-            ? 'Upcoming Conferences'
-            : 'Events with Upcoming Submissions'}
+          Upcoming Conferences
         </h2>
-        {isDefault ? conferenceList : filteredByDate}
+        {conferenceList}
       </section>
     );
   }
@@ -76,14 +63,16 @@ const mapStateToProps = store => {
   return {
     conferences: store.conferencesToDisplay,
     searchParam: store.searchParam,
-    filters: store.filters
+    filters: store.filters,
+    selectedValue: store.sortBy
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
     fetchData: () => dispatch(fetchConferenceData()),
-    updateFilters: filterKey => dispatch(updateFilters(filterKey))
+    updateFilters: filterKey => dispatch(updateFilters(filterKey)),
+    updateSort: sortByKey => dispatch(updateSort(sortByKey))
   };
 };
 

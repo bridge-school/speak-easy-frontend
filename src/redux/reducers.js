@@ -10,7 +10,8 @@ import {
   UPDATE_CONFERENCES_TO_DISPLAY,
   UPDATE_SEARCH_PARAM,
   FORM_RESET,
-  TOGGLE_FILTER
+  TOGGLE_FILTER,
+  UPDATE_SORT_BY
 } from './actions';
 
 const formData = (state = {}, action) => {
@@ -119,16 +120,26 @@ const filters = (
   }
 };
 
+const sortBy = (state = 'default', action) => {
+  switch (action.type) {
+    case UPDATE_SORT_BY:
+      return action.payload;
+    default:
+      return state;
+  }
+};
+
 const reducers = combineReducers({
-  formData,
-  isFormSubmitting,
-  formSubmitted,
-  formErrorMessage,
-  isListLoading,
   conferences,
   conferencesToDisplay,
+  filters,
+  formData,
+  formErrorMessage,
+  formSubmitted,
+  isFormSubmitting,
+  isListLoading,
   searchParam,
-  filters
+  sortBy
 });
 
 export default reducers;

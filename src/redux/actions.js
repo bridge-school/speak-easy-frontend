@@ -11,6 +11,7 @@ export const UPDATE_CONFERENCES = 'UPDATE_CONFERENCES';
 export const UPDATE_CONFERENCES_TO_DISPLAY = 'UPDATE_CONFERENCES_TO_DISPLAY';
 export const UPDATE_SEARCH_PARAM = 'UPDATE_SEARCH_PARAM';
 export const TOGGLE_FILTER = 'TOGGLE_FILTER';
+export const UPDATE_SORT_BY = 'UPDATE_SORT_BY';
 
 export const onSearchChange = input => ({
   type: UPDATE_SEARCH_PARAM,
@@ -98,6 +99,13 @@ export const updateConferencesToDisplay = payload => {
   };
 };
 
+export const updateSortBy = payload => {
+  return {
+    type: UPDATE_SORT_BY,
+    payload
+  };
+};
+
 export const fetchConferenceData = () => {
   return dispatch => {
     dispatch(listFetchStart());
@@ -112,11 +120,11 @@ export const fetchConferenceData = () => {
 
 const isTrue = value => value === 'Yes';
 
-export const updateFilters = filterKey => {
+export const filterAndSortConferences = () => {
   return (dispatch, getState) => {
-    dispatch(toggleFilter(filterKey));
+    const { conferences, filters, sortBy } = getState();
 
-    const { conferences, filters } = getState();
+    // Filter conferences
     const {
       compensation: hasCompensation,
       codeOfConduct: hasCodeOfConduct,
@@ -132,6 +140,47 @@ export const updateFilters = filterKey => {
           : true)
     );
 
-    dispatch(updateConferencesToDisplay(filteredConferences));
+    // Sort conferences
+    if (sortBy === 'default') {
+      dispatch(updateConferencesToDisplay(filteredConferences));
+    } else {
+      let sortedConferences = [...filteredConferences];
+
+      if (sortBy === 'submissionDueDate' || sortBy === 'eventDate') {
+        sortedConferences = sortedConferences.sort(ascendingDates(sortBy));
+      } else {
+        sortedConferences = sortedConferences.sort(ascendingNames);
+      }
+
+      dispatch(updateConferencesToDisplay(sortedConferences));
+    }
+  };
+};
+
+export const updateFilters = filterKey => {
+  return dispatch => {
+    dispatch(toggleFilter(filterKey));
+    dispatch(filterAndSortConferences());
+  };
+};
+
+const ascendingDates = dateKey => (a, b) => {
+  const date1 = new Date(a[dateKey]);
+  const date2 = new Date(b[dateKey]);
+
+  return date1 - date2;
+};
+
+const ascendingNames = (a, b) => {
+  const name1 = a.eventName.toLowerCase();
+  const name2 = b.eventName.toLowerCase();
+
+  return name1 < name2 ? -1 : name1 > name2 ? 1 : 0;
+};
+
+export const updateSort = sortByKey => {
+  return dispatch => {
+    dispatch(updateSortBy(sortByKey));
+    dispatch(filterAndSortConferences());
   };
 };
