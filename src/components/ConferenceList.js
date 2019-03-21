@@ -26,38 +26,26 @@ export class ConferenceList extends React.Component {
   };
 
   render() {
+    const isDefault = this.state.selectedValue === 'default';
     const filteredList = this.props.conferences.filter(
       item =>
         this.searchMatches(item.eventName) ||
         this.searchMatches(item.eventLocation)
     );
 
-    const conferenceList = (
-      <section className=" mw5 mw7-ns center">
-        <h2 className=" w-100 sans-serif pa0 f2 tl fw2 mh0 mt4 mb3">
-          Upcoming Conferences
-        </h2>
-        {filteredList &&
-          filteredList.map(conference => (
-            <ConferenceCard key={conference.id} conferenceData={conference} />
-          ))}
-      </section>
-    );
+    const conferenceList =
+      filteredList &&
+      filteredList.map(conference => (
+        <ConferenceCard key={conference.id} conferenceData={conference} />
+      ));
 
-    const filteredByDate = this.props.conferences.filter(
-      conference => new Date(conference.submissionDueDate) - new Date() < 7
-    );
-
-    const filteredConferenceList = (
-      <section>
-        <h2 className=" w-100 sans-serif pa0 f2 tl fw2 mh0 mt4 mb3">
-          Events with Upcoming Submission Dates
-        </h2>
-        {filteredByDate.map(conference => (
-          <ConferenceCard key={conference.id} conferenceData={conference} />
-        ))}
-      </section>
-    );
+    const filteredByDate = this.props.conferences
+      .filter(
+        conference => new Date(conference.submissionDueDate) - new Date() < 7
+      )
+      .map(conference => (
+        <ConferenceCard key={conference.id} conferenceData={conference} />
+      ));
 
     return (
       <section className=" mw5 mw7-ns center">
@@ -66,9 +54,12 @@ export class ConferenceList extends React.Component {
           value={this.state.selectedValue}
           onChange={this.handleDropDown}
         />
-        {this.state.selectedValue === 'submissionDate'
-          ? filteredConferenceList
-          : conferenceList}
+        <h2 className="w-100 sans-serif pa0 f2 tl fw2 mh0 mt4 mb3">
+          {isDefault
+            ? 'Upcoming Conferences'
+            : 'Events with Upcoming Submissions'}
+        </h2>
+        {isDefault ? conferenceList : filteredByDate}
       </section>
     );
   }
