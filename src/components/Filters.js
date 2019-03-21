@@ -4,7 +4,7 @@ import classNames from 'classnames';
 const FilterButton = ({ children, isActive, id, toggleFilter }) => {
   const buttonClasses = classNames('f6', 'br2', 'bright-blue', 'mr2', 'h2', {
     'b--bright-blue': isActive,
-    'bg-white': !isActive,
+    'bg-dark-grey': !isActive,
     grey: !isActive
   });
 
