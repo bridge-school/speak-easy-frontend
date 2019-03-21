@@ -37,7 +37,8 @@ class ConferenceCard extends Component {
       hasCodeOfConduct,
       hasDiversityScholarships,
       contactEmail,
-      contactName
+      contactName,
+      submissionWebsite
     } = this.props.conferenceData;
     return (
       <div className="br3 ba b--black-20 mw5 mw7-ns center bg-white pa3 sans-serif ma3 tl">
@@ -54,32 +55,45 @@ class ConferenceCard extends Component {
           <BlackOrGray
             isActive={isCompensated}
             icon={Compensation}
-            alt="dollar sign">
+            alt="dollar sign"
+          >
             Compensation
           </BlackOrGray>
           <BlackOrGray
             isActive={hasCodeOfConduct}
             icon={Conduct}
-            alt="check mark">
+            alt="check mark"
+          >
             Code of Conduct
           </BlackOrGray>
           <BlackOrGray
             isActive={hasDiversityScholarships}
             icon={Scholarship}
-            alt="graduation cap">
+            alt="graduation cap"
+          >
             Diversity Scholarship
           </BlackOrGray>
         </ul>
         {this.state.isExpanded && (
-          <div>
+          <div className="mv2">
             <p className="mv1">Contact Email: {contactEmail}</p>
             <p className="mv1">Contact Name: {contactName}</p>
+            <p className="mv1">
+              Submission Website:
+              <a
+                className="link underline-hover bright-blue ph1"
+                href={`http://${submissionWebsite}`}
+              >
+                {submissionWebsite}
+              </a>
+            </p>
           </div>
         )}
         <a
           className="f6 link dim ph3 pv2 mb2 dib bright-blue mv2"
           href="#0"
-          onClick={() => this.setState({ isExpanded: !this.state.isExpanded })}>
+          onClick={() => this.setState({ isExpanded: !this.state.isExpanded })}
+        >
           {this.state.isExpanded ? 'See less' : 'See more...'}
         </a>
       </div>
