@@ -41,7 +41,7 @@ const Filters = ({ toggleFilter, filters }) => {
   ];
 
   return (
-    <div className="flex items-center flex-wrap w-60">
+    <div className="flex items-center flex-wrap w-60-ns">
       <label className="fw2 w-100 tl mb2">Only show events with</label>
       {buttons.map(button => (
         <FilterButton key={button.id} toggleFilter={toggleFilter} {...button}>

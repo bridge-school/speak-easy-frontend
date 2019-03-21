@@ -20,7 +20,7 @@ const Header = ({ location }) => {
   const btn = location.pathname === '/' ? submitBtn : backBtn;
   return (
     <header className="bb br1 b--lavender pa3 bg-white f4 tl serif i">
-      <h1 className="w-60 f3 center ma0 mb2 normal">
+      <h1 className="w-60-ns f3 center ma0 mb2 normal">
         <Link to="/" className="black no-underline">
           Call for Diversity
         </Link>

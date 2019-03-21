@@ -43,9 +43,9 @@ export class ConferenceList extends React.Component {
       ));
 
     return (
-      <section className=" mw5 mw7-ns center">
+      <section className="ma5 mw7-ns w-90 center">
         <SearchBar />
-        <div className="flex">
+        <div className="flex flex-wrap">
           <Filters toggleFilter={updateFilters} filters={filters} />
           <DropDown value={selectedValue} onChange={this.handleDropDown} />
         </div>
