@@ -43,7 +43,7 @@ export class ConferenceList extends React.Component {
       ));
 
     return (
-      <section className="ma5 mw7-ns w-90 center">
+      <section className="mt2 ma5 mw7-ns w-90 center">
         <SearchBar />
         <div className="flex flex-wrap">
           <Filters toggleFilter={updateFilters} filters={filters} />
