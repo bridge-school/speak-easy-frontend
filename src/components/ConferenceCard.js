@@ -36,7 +36,8 @@ class ConferenceCard extends Component {
       hasCodeOfConduct,
       hasDiversityScholarships,
       contactEmail,
-      contactName
+      contactName,
+      submissionWebsite
     } = this.props.conferenceData;
     return (
       <div className="br3 ba b--black-20 mw5 mw7-ns center bg-white pa3 sans-serif ma3 tl">
@@ -73,9 +74,18 @@ class ConferenceCard extends Component {
           </BlackOrGray>
         </ul>
         {this.state.isExpanded && (
-          <div>
+          <div className="mv2">
             <p className="mv1">Contact Email: {contactEmail}</p>
             <p className="mv1">Contact Name: {contactName}</p>
+            <p className="mv1">
+              Submission Website:
+              <a
+                className="link underline-hover bright-blue ph1"
+                href={`http://${submissionWebsite}`}
+              >
+                {submissionWebsite}
+              </a>
+            </p>
           </div>
         )}
         <a
