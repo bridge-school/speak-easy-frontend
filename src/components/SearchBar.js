@@ -18,7 +18,7 @@ const SearchBar = ({ searchParam, onSearchChange }) => {
       className="ba b--black-20 border-box w-100 center bg-white pa3 pl5 sans-serif ma3 tl "
       value={searchParam}
       onChange={handleChange}
-      placeholder="Search for event by name"
+      placeholder="Search for event by name or location"
     />
   );
 };
